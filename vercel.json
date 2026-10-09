@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/api/home" },
+    { "source": "/category/:cat", "destination": "/api/home?cat=:cat" },
+    { "source": "/p/:slug", "destination": "/api/product?slug=:slug" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/robots.txt", "destination": "/api/robots" }
+  ],
+  "redirects": [
+    { "source": "/product.html", "has": [{ "type": "query", "key": "slug", "value": "(?<slug>.*)" }], "destination": "/p/:slug", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] }
+  ]
+}
